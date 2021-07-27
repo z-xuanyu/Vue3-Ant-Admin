@@ -16,7 +16,6 @@ interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
   roleList: RoleEnum[];
-  obj: any;
   sessionTimeout?: boolean;
 }
 
@@ -31,11 +30,6 @@ export const useUserStore = defineStore({
     roleList: [],
     // Whether the login expired
     sessionTimeout: false,
-    obj: {
-      a: {
-        b: 1,
-      },
-    },
   }),
   getters: {
     getUserInfo(): UserInfo {
@@ -50,15 +44,8 @@ export const useUserStore = defineStore({
     getSessionTimeout(): boolean {
       return !!this.sessionTimeout;
     },
-
-    getObj(): any {
-      return this.obj;
-    },
   },
   actions: {
-    setObj() {
-      this.obj.a.b++;
-    },
     setToken(info: string | undefined) {
       this.token = info;
       setAuthCache(TOKEN_KEY, info);
